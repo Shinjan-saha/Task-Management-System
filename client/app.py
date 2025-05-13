@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-API_BASE = "http://localhost:8080"  # Change if your backend is hosted elsewhere
+API_BASE = "https://task-management-system-9yg1.onrender.com"  # Change if your backend is hosted elsewhere
 
 # Session state to store token
 if "token" not in st.session_state:
