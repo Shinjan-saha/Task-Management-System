@@ -96,12 +96,15 @@ All task routes require the Authorization header with a valid JWT token.
 
 ```json
 [
-  {
-    "ID": 1,
-    "Title": "Complete Streamlit UI",
-    "Completed": false,
-    "UserID": 1
-  }
+    {
+        "ID": 2,
+        "CreatedAt": "2025-05-15T11:20:14.774008+05:30",
+        "UpdatedAt": "2025-05-15T11:20:14.774008+05:30",
+        "DeletedAt": null,
+        "Title": "Complete Streamlit UI",
+        "Completed": false,
+        "UserID": 1
+    }
 ]
 
 ```
@@ -114,8 +117,10 @@ All task routes require the Authorization header with a valid JWT token.
 ```json
 {
   "title": "Complete Streamlit UI",
-  "completed": false
+  "description": "Design the task interface with API integration",
+  "status": "pending"
 }
+
 ```
 
 
@@ -123,7 +128,13 @@ All task routes require the Authorization header with a valid JWT token.
 
 ```json
 {
-  "message": "Task created successfully"
+    "ID": 3,
+    "CreatedAt": "2025-05-15T20:11:14.07816+05:30",
+    "UpdatedAt": "2025-05-15T20:11:14.07816+05:30",
+    "DeletedAt": null,
+    "Title": "Complete NextJS UI",
+    "Completed": false,
+    "UserID": 1
 }
 ```
 
@@ -140,14 +151,21 @@ PUT /tasks/1
 
 ```json
 {
-  "title": "Update Streamlit Frontend",
-  "completed": true
+  "title": "Update Go API",
+  "description": "Fix unused imports and auth middleware",
+  "status": "in-progress"
 }
 ```
 **Response:**
 ```json
 {
-  "message": "Task updated successfully"
+    "ID": 3,
+    "CreatedAt": "2025-05-15T20:11:14.07816+05:30",
+    "UpdatedAt": "2025-05-15T20:12:30.454004+05:30",
+    "DeletedAt": null,
+    "Title": "Update Go API",
+    "Completed": false,
+    "UserID": 1
 }
 ```
 ### `DELETE /tasks/{id}` — Delete a Task
@@ -162,7 +180,7 @@ DELETE /tasks/1
 
 ```json
 {
-  "message": "Task deleted successfully"
+    "message": "Deleted"
 }
 ```
 
