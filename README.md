@@ -132,7 +132,7 @@ All task routes require the Authorization header with a valid JWT token.
 
 **Example Path:**
 
-```json
+```bash
 PUT /tasks/1
 ```
 
@@ -154,7 +154,7 @@ PUT /tasks/1
 
 **Example Path:**
 
-```json
+```bash
 DELETE /tasks/1
 ```
 
