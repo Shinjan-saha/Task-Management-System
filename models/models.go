@@ -1,8 +1,10 @@
 package models
 
 import (
-	"gorm.io/driver/sqlite"
+	"fmt"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"os"
 )
 
 var DB *gorm.DB
@@ -22,11 +24,16 @@ type Task struct {
 }
 
 func ConnectDatabase() {
-	db, err := gorm.Open(sqlite.Open("tasks.db"), &gorm.Config{})
+	dsn := os.Getenv("DATABASE_URL") // Recommended way to manage secrets
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		panic("Failed to connect to database")
+		panic(fmt.Sprintf("Failed to connect to database: %v", err))
 	}
 
-	db.AutoMigrate(&User{}, &Task{})
+	err = db.AutoMigrate(&User{}, &Task{})
+	if err != nil {
+		panic(fmt.Sprintf("Failed to migrate database: %v", err))
+	}
+
 	DB = db
 }
