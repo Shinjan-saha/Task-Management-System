@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = process.env. Backend_URL;
 
 export default function TaskManagerApp() {
   const [token, setToken] = useState<string | null>(null);
