@@ -5,17 +5,19 @@ import (
 	"go-task-api/middleware"
 	"go-task-api/models"
 	  "log"
+	  "os"
      "github.com/joho/godotenv"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
-   if err := godotenv.Load(); err != nil {
-        log.Fatal("Error loading .env file")
-    }
+  if os.Getenv("DATABASE_URL") == "" { 
+		if err := godotenv.Load(); err != nil {
+			log.Println("No .env file found (this is okay in production)")
+		}
+	}
 	models.ConnectDatabase()
-
 	r.POST("/register", controllers.Register)
 	r.POST("/login", controllers.Login)
 
