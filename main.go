@@ -18,6 +18,12 @@ func main() {
 		}
 	}
 	models.ConnectDatabase()
+
+r.GET("/", func(c *gin.Context) {
+		c.String(200, "Hello, server is running")
+	})
+
+
 	r.POST("/register", controllers.Register)
 	r.POST("/login", controllers.Login)
 

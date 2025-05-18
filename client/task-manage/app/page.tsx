@@ -30,6 +30,8 @@ export default function TaskManagerApp() {
     } catch (error) {
       toast.error("Failed to fetch tasks");
     }
+   
+
   };
 
   const handleRegister = async () => {
@@ -46,18 +48,18 @@ export default function TaskManagerApp() {
     }
   };
 
-  const handleLogin = async () => {
-    try {
-      const res = await axios.post(`${BASE_URL}/login`, {
-        email,
-        password,
-      });
-      setToken(res.data.token);
-      toast.success("Login Successful");
-    } catch {
-      toast.error("Login Failed");
-    }
-  };
+ const handleLogin = async () => {
+  try {
+    const res = await axios.post(`${BASE_URL}/login`, {
+      email,
+      password,
+    });
+    setToken(res.data.token);
+    toast.success("Login Successful");
+  } catch {
+    toast.error("Login Failed");
+  }
+};
 
   const createTask = async () => {
     try {
@@ -90,6 +92,7 @@ export default function TaskManagerApp() {
   useEffect(() => {
     if (token) fetchTasks();
   }, [token]);
+console.log("BASE_URL = ", BASE_URL);
 
   return (
     <div className="p-6 max-w-xl mx-auto">
