@@ -4,25 +4,49 @@ import (
 	"go-task-api/controllers"
 	"go-task-api/middleware"
 	"go-task-api/models"
-	  "log"
-	  "os"
-     "github.com/joho/godotenv"
+	"log"
+	"os"
+
+	"github.com/joho/godotenv"
 	"github.com/gin-gonic/gin"
 )
 
+
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*") 
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(200)
+			return
+		}
+
+		c.Next()
+	}
+}
+
 func main() {
 	r := gin.Default()
-  if os.Getenv("DATABASE_URL") == "" { 
+
+	
+	if os.Getenv("DATABASE_URL") == "" {
 		if err := godotenv.Load(); err != nil {
 			log.Println("No .env file found (this is okay in production)")
 		}
 	}
+
+	
 	models.ConnectDatabase()
 
-r.GET("/", func(c *gin.Context) {
+	
+	r.Use(CORSMiddleware())
+
+	r.GET("/", func(c *gin.Context) {
 		c.String(200, "Hello, server is running")
 	})
-
 
 	r.POST("/register", controllers.Register)
 	r.POST("/login", controllers.Login)
