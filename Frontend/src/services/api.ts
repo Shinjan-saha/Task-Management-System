@@ -4,7 +4,7 @@ import { toast } from '@/components/ui/sonner';
 const API_URL = 'https://task-management-system-production-b62d.up.railway.app';
 
 export interface RegisterData {
-  name: string;
+  username: string;
   email: string;
   password: string;
 }

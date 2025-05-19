@@ -48,7 +48,7 @@ go run main.go
 
 ```json
 {
-  "name": "Shinjan",
+  "username": "Shinjan",
   "email": "shinjan@example.com",
   "password": "securepass123"
 }
