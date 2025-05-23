@@ -29,7 +29,7 @@ const AuthForm = () => {
   });
   
   const [registerForm, setRegisterForm] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -41,7 +41,7 @@ const AuthForm = () => {
   });
   
   const [registerErrors, setRegisterErrors] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -108,13 +108,13 @@ const AuthForm = () => {
   // Validate register form
   const validateRegisterForm = () => {
     let isValid = true;
-    const errors = { name: "", email: "", password: "" };
+    const errors = { username: "", email: "", password: "" };
     
-    if (!registerForm.name) {
-      errors.name = "Name is required";
+    if (!registerForm.username) {
+      errors.username = "Username is required";
       isValid = false;
-    } else if (registerForm.name.length < 2) {
-      errors.name = "Name must be at least 2 characters";
+    } else if (registerForm.username.length < 2) {
+      errors.username = "Username must be at least 2 characters";
       isValid = false;
     }
     
@@ -177,7 +177,7 @@ const AuthForm = () => {
     setIsLoading(true);
     try {
       const registerData = {
-        name: registerForm.name,
+        username: registerForm.username,
         email: registerForm.email,
         password: registerForm.password,
       };
@@ -254,19 +254,19 @@ const AuthForm = () => {
         ) : (
           <form onSubmit={handleRegisterSubmit} className="space-y-4">
             <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-medium">
-                Name
+              <label htmlFor="username" className="text-sm font-medium">
+                Username
               </label>
               <Input
-                id="name"
-                name="name"
+                id="username"
+                name="username"
                 type="text"
                 placeholder="John Doe"
-                value={registerForm.name}
+                value={registerForm.username}
                 onChange={handleRegisterChange}
               />
-              {registerErrors.name && (
-                <p className="text-sm text-red-500">{registerErrors.name}</p>
+              {registerErrors.username && (
+                <p className="text-sm text-red-500">{registerErrors.username}</p>
               )}
             </div>
             <div className="space-y-2">
