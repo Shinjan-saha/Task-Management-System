@@ -3,11 +3,12 @@ global:
 
 scrape_configs:
   - job_name: 'go-task-api'
+    scheme: https
     static_configs:
-      - targets: ['localhost:8080']
+      - targets: ['task-management-system-production-b62d.up.railway.app']
 
 remote_write:
-  - url: https://prometheus-prod-xx.grafana.net/api/prom/push
+  - url: https://prometheus-prod-43-prod-ap-south-1.grafana.net/api/prom/push
     basic_auth:
-      username: YOUR_INSTANCE_ID
-      password: YOUR_API_KEY
+       username: ${PROM_USERNAME}
+      password: ${PROM_PASSWORD}
